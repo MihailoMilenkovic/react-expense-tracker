@@ -6,9 +6,9 @@ exports[`should render expense item correctly 1`] = `
     Gum
   </h3>
   <p>
-    195
-     - 
-    0
+    $1.95
+    -
+    1st January 1970
   </p>
   <Link
     to="/edit/1"
