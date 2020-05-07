@@ -7,6 +7,7 @@ import {
   setExpenses,
   removeExpense,
   startSetExpenses,
+  startRemoveExpense,
 } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import { createStore } from "redux";
@@ -123,6 +124,17 @@ test("should fetch the expenses from firebase", (done) => {
     expect(actions[0]).toEqual({
       type: "SET_EXPENSES",
       expenses,
+    });
+    done();
+  });
+});
+test("should remove expenses from firebase", (done) => {
+  const store = createMockStore({});
+  store.dispatch(startRemoveExpense({ id: expenses[0].id })).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: "REMOVE_EXPENSE",
+      id: expenses[0].id,
     });
     done();
   });
