@@ -8,6 +8,7 @@ import {
   removeExpense,
   startSetExpenses,
   startRemoveExpense,
+  startEditExpense,
 } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import { createStore } from "redux";
@@ -135,6 +136,19 @@ test("should remove expenses from firebase", (done) => {
     expect(actions[0]).toEqual({
       type: "REMOVE_EXPENSE",
       id: expenses[0].id,
+    });
+    done();
+  });
+});
+test("should edit expense from firebase", (done) => {
+  const store = createMockStore({});
+  const newItem = { ...expenses[0], note: "some random note" };
+  store.dispatch(startEditExpense(expenses[0].id, newItem)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: "EDIT_EXPENSE",
+      id: expenses[0].id,
+      updates: { ...newItem },
     });
     done();
   });
