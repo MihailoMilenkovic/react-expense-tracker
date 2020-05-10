@@ -84,7 +84,7 @@ export const startRemoveExpense = ({ id }) => {
       .ref(`expenses/${id}`)
       .remove()
       .then(() => {
-        console.log("removed successfully from database");
+        //console.log("removed successfully from database");
         dispatch(removeExpense({ id }));
       });
   };
@@ -98,7 +98,7 @@ export const startEditExpense = (id, updates) => {
         ...updates,
       })
       .then(() => {
-        console.log("edited expense successfully");
+        //console.log("edited expense successfully");
         dispatch(editExpense(id, updates));
       });
   };
